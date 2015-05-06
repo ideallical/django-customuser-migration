@@ -2,7 +2,7 @@ Migrate Django 1.8 User to CustomUser with email (MySQL)
 ========================================================
 
 I created this repository because I found it difficult to switch from a standard
-Django User to an custom Django User. Especially when you're already using the
+Django User to a custom Django User. Especially when you're already using the
 Django User heavily in other models.
 This project is an example on how to do that with some handy migrations.
 
@@ -20,6 +20,7 @@ other databases but I assume you can easily adjust that.
 
 ::
     $ pip install -r requirements.txt
+
 
 
 2. Change Django project settings
@@ -41,7 +42,7 @@ other databases but I assume you can easily adjust that.
     )
 
     $ python manage.py migrate accounts 0001 --fake  # this is your current Django User model
-    $ python manage.py migrate accounts 0002  # change auth_user to accounts_user etc.
+    $ python manage.py migrate accounts 0002  # change tablename auth_user to accounts_user etc.
     $ python manage.py migrate accounts 0003  # make email unique, and remove username field
 
 
@@ -56,7 +57,11 @@ Remove the migrations folder in accounts, and create a new initial migration:
 ::
     $ python manage.py makemigrations accounts
 
+
 Then remove all the migrations from the databases in your env like so:
-'DELETE FROM django_migrations WHERE app = 'accounts' AND name != '0001_initial'
+
+::
+    DELETE FROM django_migrations WHERE app = 'accounts' AND name != '0001_initial';
+
 
 There you go, you have a fresh start!
