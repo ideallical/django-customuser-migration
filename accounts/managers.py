@@ -1,8 +1,7 @@
 from django.contrib.auth.models import BaseUserManager
-from django.contrib.gis.db.models import GeoManager
 
 
-class UserManager(BaseUserManager, GeoManager):
+class UserManager(BaseUserManager):
 
     def create_user(self, first_name, last_name, email, password, is_active=True):
         if not first_name:
