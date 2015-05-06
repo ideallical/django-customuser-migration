@@ -1,0 +1,19 @@
+{% extends "project/base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="profile well">
+    <div class="pull-right">
+        <a class="btn btn-primary" href="{% url 'accounts:profile_edit' %}">{% trans 'edit' %}</a>
+        <a class="btn btn-default" href="{% url 'accounts:password_edit' %}">{% trans 'change password' %}</a>
+    </div>
+    <h1>Profile</h1>
+    <div class="profile-details">
+        <p>email <strong>{{ user.email }}</strong></p>
+        <p>first name <strong>{{ user.first_name }}</strong></p>
+        <p>last name <strong>{{ user.last_name }}</strong></p>
+        <p>date joined <strong>{{ user.date_joined|date:"Y-m-d" }}</strong></p>
+    </div>
+</div>
+{% endblock %}

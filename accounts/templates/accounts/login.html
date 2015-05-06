@@ -1,0 +1,26 @@
+{% extends "project/base.html" %}
+{% load i18n bootstrap3 %}
+
+{% block doc_title %}
+{{ block.super }} - {% trans "Login" %}
+{% endblock %}
+
+{% block content %}
+    {% if not user.is_authenticated %}
+        <form class="well form-horizontal login-form" action="{% url 'accounts:login' %}" method="post" role="form">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ next }}">
+          <legend>{% trans "Login"%}</legend>
+          {% bootstrap_form form field_class='col-sm-10' label_class='col-sm-2 control-label' %}
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary">{% trans "Sign in" %}</button>
+              <a href="{% url 'accounts:password_reset'%}">{% trans "forgot password?"%}</a>
+            </div>
+          </div>
+        </form>
+    {% else %}
+        <a href="{% url 'accounts:logout' %}">{% trans "logout"%}</a>
+    {% endif %}
+
+{% endblock %}
