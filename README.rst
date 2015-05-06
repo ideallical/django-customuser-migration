@@ -19,6 +19,7 @@ other databases but I assume you can easily adjust that.
 --------------------------
 
 ::
+
     $ pip install -r requirements.txt
 
 
@@ -55,12 +56,14 @@ Now once you have done this in every environment.
 Remove the migrations folder in accounts, and create a new initial migration:
 
 ::
+
     $ python manage.py makemigrations accounts
 
 
 Then remove all the migrations from the databases in your env like so:
 
 ::
+
     DELETE FROM django_migrations WHERE app = 'accounts' AND name != '0001_initial';
 
 
