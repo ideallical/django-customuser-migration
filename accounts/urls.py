@@ -20,4 +20,10 @@ urlpatterns = patterns(
     url(r'^password/reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', auth_views.password_reset_confirm, name='password_reset_confirm', kwargs={'template_name': 'accounts/password_reset_confirm.html', 'post_reset_redirect': '/password/reset/complete/'}),
     url(r'^password/reset/complete/$', auth_views.password_reset_complete, name='password_reset_complete', kwargs={'template_name': 'accounts/password_reset_complete.html'}),
 
+    url(r'^register/$', views.Register.as_view(), name='register'),
+    url(r'^register/closed/$', views.RegistrationClosed.as_view(), name='registration_closed'),
+    url(r'^register/complete/$', views.RegistrationComplete.as_view(), name='registration_complete'),
+
+    url(r'^activate/complete/$', views.ActivationComplete.as_view(), name='activation_complete'),
+    url(r'^activate/(?P<activation_key>\w+)/$', views.Activate.as_view(), name='activate'),
 )

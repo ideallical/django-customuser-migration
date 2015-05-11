@@ -31,8 +31,11 @@ other databases but I assume you can easily adjust that.
 
     AUTH_USER_MODEL = 'accounts.User'
     LOGIN_URL = '/login/'
-    LOGIN_REDIRECT_URL = '/'
+    LOGIN_REDIRECT_URL = '/profile/'
     DEFAULT_FROM_EMAIL = 'noreply@example.com'
+    ACCOUNTS_REGISTRATION_OPEN = True
+    ACCOUNT_ACTIVATION_DAYS = 7
+
 
     INSTALLED_APPS = (
         '...'
@@ -45,6 +48,7 @@ other databases but I assume you can easily adjust that.
     $ python manage.py migrate accounts 0001 --fake  # this is your current Django User model
     $ python manage.py migrate accounts 0002  # change tablename auth_user to accounts_user etc.
     $ python manage.py migrate accounts 0003  # make email unique, and remove username field
+    $ python manage.py migrate accounts 0004  # make registration possible
 
 
 3. Copy the accounts and project folder to your Django project root

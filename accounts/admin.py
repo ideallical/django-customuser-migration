@@ -29,4 +29,13 @@ class UserAdmin(DjangoUserAdmin):
     )
 
 
+class RegistrationProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'activation_key', 'created', 'created_ip_address')
+    readonly_fields = ('user', 'activation_key', 'created', 'created_ip_address')
+    search_fields = ('user__first_name', 'user__last_name', 'user__email')
+
+    def has_add_permission(self, request):
+        return False
+
 admin.site.register(models.User, UserAdmin)
+admin.site.register(models.RegistrationProfile, RegistrationProfileAdmin)

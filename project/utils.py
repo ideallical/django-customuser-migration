@@ -1,6 +1,16 @@
+import random
+from hashlib import md5
+
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+
+
+def short_hash(s, use_salt=True):
+    if use_salt:
+        salt = str(random.random())
+        s = salt + s
+    return md5(s.encode('utf-8')).hexdigest()[:16]
 
 
 def send_template_mail(to_email, subject_template, email_template, extra_context, request=None):
